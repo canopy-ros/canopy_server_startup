@@ -1,0 +1,4 @@
+sudo: required
+dist: trusty
+install:
+    - bash canopy_server_install.sh
