@@ -15,7 +15,7 @@ cd ~
 # echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
 # echo 'export GOPATH=$HOME/go' >> ~/.bashrc
 # echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
-export GOPATH=$pwd/go
+export GOPATH=$(pwd)/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$PATH:/usr/local/go/bin
 mkdir -p go/src/github.com/canopy-ros

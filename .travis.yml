@@ -1,5 +1,5 @@
 sudo: required
-language: bash
+language:
 dist: trusty
 install:
     - bash canopy_server_install.sh
