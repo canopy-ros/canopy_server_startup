@@ -30,6 +30,8 @@ go get github.com/docker/go-connections
 go get github.com/docker/go-units
 go get github.com/docker/distribution
 go get github.com/Sirupsen/logrus
+go get golang.org/x/net/context
+go get golang.org/x/net/proxy
 go get github.com/opencontainers/runc || true
 go get gopkg.in/mgo.v2
 git clone https://github.com/canopy-ros/canopy_server_comm
