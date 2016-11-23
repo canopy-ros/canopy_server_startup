@@ -42,7 +42,6 @@ git clone https://github.com/canopy-ros/canopy_server_paas
 cd canopy_server_paas
 go install
 cd docker
-sudo docker -d
 sudo docker build --tag="canopy" .
 mkdir -p ~/meteor
 cd ~/meteor
