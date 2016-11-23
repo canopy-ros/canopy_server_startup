@@ -23,6 +23,7 @@ mkdir -p go/src/github.com/canopy-ros
 mkdir -p go/bin
 mkdir -p go/pkg
 cd go/src/github.com/canopy-ros
+/usr/local/go/bin/go version
 /usr/local/go/bin/go get github.com/gorilla/websocket
 /usr/local/go/bin/go get github.com/garyburd/redigo/redis
 /usr/local/go/bin/go get github.com/docker/engine-api
