@@ -23,24 +23,24 @@ mkdir -p go/src/github.com/canopy-ros
 mkdir -p go/bin
 mkdir -p go/pkg
 cd go/src/github.com/canopy-ros
-go get github.com/gorilla/websocket
-go get github.com/garyburd/redigo/redis
-go get github.com/docker/engine-api
-go get github.com/docker/go-connections
-go get github.com/docker/go-units
-go get github.com/docker/distribution
-go get github.com/Sirupsen/logrus
-go get golang.org/x/net/context
-go get golang.org/x/net/proxy
-go get github.com/opencontainers/runc || true
-go get gopkg.in/mgo.v2
+/usr/local/go/bin/go get github.com/gorilla/websocket
+/usr/local/go/bin/go get github.com/garyburd/redigo/redis
+/usr/local/go/bin/go get github.com/docker/engine-api
+/usr/local/go/bin/go get github.com/docker/go-connections
+/usr/local/go/bin/go get github.com/docker/go-units
+/usr/local/go/bin/go get github.com/docker/distribution
+/usr/local/go/bin/go get github.com/Sirupsen/logrus
+/usr/local/go/bin/go get golang.org/x/net/context
+/usr/local/go/bin/go get golang.org/x/net/proxy
+/usr/local/go/bin/go get github.com/opencontainers/runc || true
+/usr/local/go/bin/go get gopkg.in/mgo.v2
 git clone https://github.com/canopy-ros/canopy_server_comm
 cd canopy_server_comm
-go install
+/usr/local/go/bin/go install
 cd ..
 git clone https://github.com/canopy-ros/canopy_server_paas
 cd canopy_server_paas
-go install
+/usr/local/go/bin/go install
 cd docker
 sudo docker build --tag="canopy" .
 mkdir -p ~/meteor
