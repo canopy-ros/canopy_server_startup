@@ -24,6 +24,7 @@ mkdir -p go/bin
 mkdir -p go/pkg
 cd go/src/github.com/canopy-ros
 go version
+which go
 go get github.com/gorilla/websocket
 go get github.com/garyburd/redigo/redis
 go get github.com/docker/engine-api
