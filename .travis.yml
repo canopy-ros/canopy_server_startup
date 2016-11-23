@@ -1,5 +1,7 @@
 sudo: required
-language: bash
+language: go
 dist: trusty
+go:
+    - 1.7.3
 install:
     - bash canopy_server_install.sh
