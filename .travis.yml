@@ -2,12 +2,12 @@ sudo: required
 language: bash
 dist: trusty
 go:
-- 1.7.3
+    - 1.7.3
 install:
-- source canopy_server_install.sh
+    - source canopy_server_install.sh
 deploy:
-  provider: gcs
-  access_key_id: GOOGNPTKC434KREWJ2PU
-  secret_access_key:
-    secure: t/QUtiB482F+3iZNtoMTb5ilcXyYkuoaqk579pGdIJDDsKTGMma4ZFb3qU6A+FyFDponaXkIoEHsvBz0dj9YuWxP/uE44TVW8gXFW7RpgqvicWe+SZ5A3+CH8fjrQaTiQe5S++32ERpdKk7gAzcsWIT1CNiqwV1PwrJ7Vjv+qCzfbdEaN4GXqd9RnBr8mxqPsw08o+jVr2gUQD2MU+tRPnrcgZWt47DRByredxl1jGUKbfAFHMN0vOxPMVkSe9y+Re4pJPoghmDl8F13aDmhTRuR/AwrkKuC2fSA6AceqdIEoqRnMnNcQeLtgCB9LY295fuxwAPlTVaeCRL5qHk+UQDsGG0hyGtZtoyngOkTjZ0FYBKCFVrsHm1YEctf/8YCfmX60IYp0oiif0xc6dgxENWceV4HyMJ5UYD8DKZ6Z/UNqZNwMMtdCW6hYSJWlELk2qfmTaKCQ4LUgnM/DDTooEYwib7ItDHL2aMxdCKik+178VoqQ4c5+hWoIRMNhhwAYDMpumE5TyxzIS5e6iIjbtGMW+Q8AADJlPwBmhCJDQRFPagmwouNilvYr7YgEhUXAsue69yXZ8ej9szuQD6YRMSIGjTUbwLtZoAu6C19Yc3SwmncVZdnhVKiTpu+Mm7bxaxkxwTh9o5VYaS6bwIpw0lMOkCqa9sBg56/gS6HNo0=
-  bucket: canopy-ros-bucket
+    provider: gcs
+    access_key_id: GOOGNPTKC434KREWJ2PU
+    secret_access_key:
+        secure: t/QUtiB482F+3iZNtoMTb5ilcXyYkuoaqk579pGdIJDDsKTGMma4ZFb3qU6A+FyFDponaXkIoEHsvBz0dj9YuWxP/uE44TVW8gXFW7RpgqvicWe+SZ5A3+CH8fjrQaTiQe5S++32ERpdKk7gAzcsWIT1CNiqwV1PwrJ7Vjv+qCzfbdEaN4GXqd9RnBr8mxqPsw08o+jVr2gUQD2MU+tRPnrcgZWt47DRByredxl1jGUKbfAFHMN0vOxPMVkSe9y+Re4pJPoghmDl8F13aDmhTRuR/AwrkKuC2fSA6AceqdIEoqRnMnNcQeLtgCB9LY295fuxwAPlTVaeCRL5qHk+UQDsGG0hyGtZtoyngOkTjZ0FYBKCFVrsHm1YEctf/8YCfmX60IYp0oiif0xc6dgxENWceV4HyMJ5UYD8DKZ6Z/UNqZNwMMtdCW6hYSJWlELk2qfmTaKCQ4LUgnM/DDTooEYwib7ItDHL2aMxdCKik+178VoqQ4c5+hWoIRMNhhwAYDMpumE5TyxzIS5e6iIjbtGMW+Q8AADJlPwBmhCJDQRFPagmwouNilvYr7YgEhUXAsue69yXZ8ej9szuQD6YRMSIGjTUbwLtZoAu6C19Yc3SwmncVZdnhVKiTpu+Mm7bxaxkxwTh9o5VYaS6bwIpw0lMOkCqa9sBg56/gS6HNo0=
+    bucket: canopy-ros-bucket
