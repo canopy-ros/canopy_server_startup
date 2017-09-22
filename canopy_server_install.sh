@@ -9,7 +9,7 @@ sudo apt-get install curl -y
 sudo apt-get install redis-server -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \
     Dpkg::Options::="--force-confdef" \
-    -o Dpkg::Options::="--force-confnew" install docker-engine
+    -o Dpkg::Options::="--force-confnew" install docker-ce
 # sudo apt-get install docker.io -y
 sudo apt-get install python-pip -y
 curl https://install.meteor.com/ | sh
