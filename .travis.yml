@@ -4,4 +4,4 @@ dist: trusty
 go:
     - 1.7.3
 install:
-    - source canopy_server_comm_install.sh
+    - source canopy_server_install.sh
