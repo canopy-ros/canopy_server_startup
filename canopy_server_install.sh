@@ -36,6 +36,7 @@ go get golang.org/x/net/context
 go get golang.org/x/net/proxy
 go get github.com/opencontainers/runc || true
 go get gopkg.in/mgo.v2
+go get github.com/pkg/errors
 git clone https://github.com/canopy-ros/canopy_server_comm
 cd canopy_server_comm
 go install
