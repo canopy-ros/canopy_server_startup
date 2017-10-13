@@ -17,6 +17,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \
     -o Dpkg::Options::="--force-confnew" install docker-ce
 sudo apt-get install python-pip -y
 curl https://install.meteor.com/ | sh
+export HOME=/home/$USER
 cd ~
 #echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
 #echo 'export GOPATH=$HOME/go' >> ~/.bashrc
