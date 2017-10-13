@@ -16,9 +16,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \
     Dpkg::Options::="--force-confdef" \
     -o Dpkg::Options::="--force-confnew" install docker-ce
 sudo apt-get install python-pip -y
-curl https://install.meteor.com/ | sh
-export HOME=/home/$USER
-cd ~
+curl https://install.meteor.com/ | sudo sh
+cd $HOME
 #echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
 #echo 'export GOPATH=$HOME/go' >> ~/.bashrc
 #echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
@@ -51,7 +50,7 @@ cd canopy_server_paas
 go install
 cd docker
 sudo docker build --tag="canopy" .
-mkdir -p ~/meteor
-cd ~/meteor
+mkdir -p $HOME/meteor
+cd $HOME/meteor
 git clone https://github.com/canopy-ros/canopy_server_dashboard
 cd $START_DIR
