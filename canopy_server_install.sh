@@ -54,5 +54,5 @@ mkdir -p $HOME/meteor
 cd $HOME/meteor
 git clone https://github.com/canopy-ros/canopy_server_dashboard
 cd $START_DIR
-sudo cp canopy_server_comm.service /etc/systemd/system
-sudo cp canopy_server_paas.service /etc/systemd/system
+sudo cp canopy_server_comm.service /lib/systemd/system
+sudo cp canopy_server_paas.service /lib/systemd/system
