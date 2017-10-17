@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-START_DIR=$(pwd)
+export CANOPY_DIR=$(pwd)
 sudo apt-get update
 GIMME_OUTPUT=$(gimme 1.7.3) && eval "$GIMME_OUTPUT"
 wget https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz
@@ -53,6 +53,6 @@ sudo docker build --tag="canopy" .
 mkdir -p $HOME/meteor
 cd $HOME/meteor
 git clone https://github.com/canopy-ros/canopy_server_dashboard
-cd $START_DIR
+cd $CANOPY_DIR
 sudo cp canopy_server_comm.service /lib/systemd/system
 sudo cp canopy_server_paas.service /lib/systemd/system

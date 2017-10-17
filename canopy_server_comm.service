@@ -1,4 +1,4 @@
 [Unit]
 Description = making canopy server comm up
 [Service]
-ExecStart = canopy_server_comm --addr="$(hostname -I | cut -d' ' -f1):8080"
+ExecStart = /bin/bash -c '$CANOPY_DIR/Projects/canopy_server_startup/canopy_server_comm.sh --addr="$(hostname -I | cut -d' ' -f1):8080"'
