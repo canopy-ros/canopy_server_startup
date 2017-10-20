@@ -1,4 +1,4 @@
 [Unit]
 Description = making canopy server paas up
 [Service]
-ExecStart = /bin/bash -c '$CANOPY_DIR/Projects/canopy_server_startup/canopy_server_paas.sh --addr="$(hostname -I | cut -d' ' -f1)" --port=8080'
+ExecStart = /bin/bash -c 'canopy_server_paas --addr="$(hostname -I | cut -d' ' -f1)" --port=8080'
