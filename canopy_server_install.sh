@@ -56,3 +56,4 @@ git clone https://github.com/canopy-ros/canopy_server_dashboard
 cd $CANOPY_DIR
 sudo cp canopy_server_comm.service /lib/systemd/system
 sudo cp canopy_server_paas.service /lib/systemd/system
+sudo systemctl set-environment PATH=$PATH
