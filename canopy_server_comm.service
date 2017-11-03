@@ -1,4 +1,5 @@
 [Unit]
 Description = making canopy server comm up
 [Service]
+EnvironmentFile = /etc/sysconfig/canopy
 ExecStart = /bin/sh -c "canopy_server_comm --addr=$(hostname -I | cut -d' ' -f1):8080"
