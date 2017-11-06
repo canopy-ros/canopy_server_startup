@@ -1,5 +1,5 @@
 [Unit]
 Description = making canopy server paas up
 [Service]
-EnvironmentFile	= /etc/sysconfig/canopy
+EnvironmentFile	= /etc/default/canopy
 ExecStart = /bin/sh -c "canopy_server_paas --addr=$(hostname -I | cut -d' ' -f1) --port=8080"

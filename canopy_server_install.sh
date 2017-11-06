@@ -54,7 +54,13 @@ mkdir -p $HOME/meteor
 cd $HOME/meteor
 git clone https://github.com/canopy-ros/canopy_server_dashboard
 cd $CANOPY_DIR
-sudo cp canopy_server_comm.service /lib/systemd/system
-sudo cp canopy_server_paas.service /lib/systemd/system
-sudo mkdir -p /etc/sysconfig/ 
-sudo "PATH=$PATH" sh -c 'echo "PATH=$PATH" > /etc/sysconfig/canopy'
+sudo mkdir -p /etc/default/ 
+sudo "PATH=$PATH" sh -c 'echo "PATH=$PATH" > /etc/default/canopy'
+if [ -d /lib/systemd/ ]; then
+    sudo cp canopy_server_comm.service /lib/systemd/system
+    sudo cp canopy_server_paas.service /lib/systemd/system
+fi
+if [ -d /etc/init/ ]; then
+    sudo cp canopy_server_comm.conf /etc/init
+    sudo cp canopy_server_paas.conf /etc/init
+fi
