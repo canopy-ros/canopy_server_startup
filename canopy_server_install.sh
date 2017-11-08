@@ -40,7 +40,7 @@ govendor fetch github.com/docker/distribution
 govendor fetch github.com/Sirupsen/logrus
 govendor fetch golang.org/x/net/context
 govendor fetch golang.org/x/net/proxy
-govendor fetch github.com/opencontainers/runc || true
+govendor fetch github.com/opencontainers/runc
 govendor fetch gopkg.in/mgo.v2
 govendor fetch github.com/pkg/errors
 git clone https://github.com/canopy-ros/canopy_server_comm
