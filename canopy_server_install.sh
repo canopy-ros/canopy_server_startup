@@ -29,25 +29,27 @@ mkdir -p go/bin
 mkdir -p go/pkg
 cd go/src/github.com/canopy-ros
 go version
-go get github.com/gorilla/websocket
-go get github.com/garyburd/redigo/redis
-go get github.com/docker/engine-api
-go get github.com/docker/go-connections
-go get github.com/docker/go-units
-go get github.com/docker/distribution
-go get github.com/Sirupsen/logrus
-go get golang.org/x/net/context
-go get golang.org/x/net/proxy
-go get github.com/opencontainers/runc || true
-go get gopkg.in/mgo.v2
-go get github.com/pkg/errors
+go get -u github.com/kardianos/govendor
+govendor init
+govendor fetch github.com/gorilla/websocket
+govendor fetch github.com/garyburd/redigo/redis
+govendor fetch github.com/docker/engine-api/^
+govendor fetch github.com/docker/go-connections
+govendor fetch github.com/docker/go-units
+govendor fetch github.com/docker/distribution
+govendor fetch github.com/Sirupsen/logrus
+govendor fetch golang.org/x/net/context
+govendor fetch golang.org/x/net/proxy
+govendor fetch github.com/opencontainers/runc || true
+govendor fetch gopkg.in/mgo.v2
+govendor fetch github.com/pkg/errors
 git clone https://github.com/canopy-ros/canopy_server_comm
 cd canopy_server_comm
-go install
+govendor install +local
 cd ..
 git clone https://github.com/canopy-ros/canopy_server_paas
 cd canopy_server_paas
-go install
+govendor install +local
 cd docker
 sudo docker build --tag="canopy" .
 mkdir -p $HOME/meteor
