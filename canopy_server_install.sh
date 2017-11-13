@@ -53,6 +53,7 @@ govendor install +local
 cd docker
 sudo docker build --tag="canopy" .
 mkdir -p $HOME/meteor
+sudo chown -R $USER $HOME/.meteor
 cd $HOME/meteor
 git clone https://github.com/canopy-ros/canopy_server_dashboard
 cd $CANOPY_DIR
