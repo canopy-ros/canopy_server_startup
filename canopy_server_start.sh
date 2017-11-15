@@ -28,3 +28,5 @@ if [ $DASHBOARD -eq 1 ]; then
     (env REDIS_CONFIGURE_KEYSPACE_NOTIFICATIONS=1 meteor) &
 fi
 #sudo chmod 777 /var/run/docker.sock
+
+set +e

@@ -35,6 +35,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \
     Dpkg::Options::="--force-confdef" \
     -o Dpkg::Options::="--force-confnew" install docker-ce
 sudo apt-get install python-pip -y
+
+# set path
 cd $HOME
 #echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
 #echo 'export GOPATH=$HOME/go' >> ~/.bashrc
@@ -42,39 +44,34 @@ cd $HOME
 export GOPATH=$(pwd)/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$PATH:/usr/local/go/bin
+
+# initialize go directory
 mkdir -p go/src/github.com/canopy-ros
 mkdir -p go/bin
 mkdir -p go/pkg
 cd go/src/github.com/canopy-ros
-go version
-go get -u github.com/kardianos/govendor
-govendor init
-govendor fetch github.com/gorilla/websocket
-govendor fetch github.com/garyburd/redigo/redis
-govendor fetch github.com/docker/engine-api/^
-govendor fetch github.com/docker/go-connections
-govendor fetch github.com/docker/go-units
-govendor fetch github.com/docker/distribution
-govendor fetch github.com/Sirupsen/logrus
-govendor fetch golang.org/x/net/context
-govendor fetch golang.org/x/net/proxy
-govendor fetch github.com/opencontainers/runc
-govendor fetch gopkg.in/mgo.v2
-govendor fetch github.com/pkg/errors
 git clone https://github.com/canopy-ros/canopy_server_comm
-cd canopy_server_comm
-govendor install +local
-cd ..
 git clone https://github.com/canopy-ros/canopy_server_paas
-cd canopy_server_paas
-govendor install +local
+
+# install go dependencies with govendor
+go get -u github.com/kardianos/govendor
+cd canopy_server_comm
+govendor sync
+cd ../canopy_server_paas
+govendor sync
+
+# set up docker in paas server
 cd docker
 sudo docker build --tag="canopy" .
+
+# set up dashboard
 if [ $DASHBOARD -eq 1 ]; then
     mkdir -p $METEOR_PATH/meteor
     cd $METEOR_PATH/meteor
     git clone https://github.com/canopy-ros/canopy_server_dashboard
 fi
+
+# set up services with systemd/upstart
 cd $CANOPY_DIR
 sudo mkdir -p /etc/default/ 
 sudo "PATH=$PATH" sh -c 'echo "PATH=$PATH" > /etc/default/canopy'
@@ -86,3 +83,5 @@ if [ -d /etc/init/ ]; then
     sudo cp canopy_server_comm.conf /etc/init
     sudo cp canopy_server_paas.conf /etc/init
 fi
+
+set +e
