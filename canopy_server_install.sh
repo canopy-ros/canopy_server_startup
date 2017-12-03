@@ -58,11 +58,9 @@ echo "installing go dependencies..."
 go get -u github.com/kardianos/govendor
 cd canopy_server_comm
 govendor sync
-cp $CANOPY_DIR/config.* .
 govendor install
 cd ../canopy_server_paas
 govendor sync
-cp $CANOPY_DIR/config.* .
 govendor install
 
 # set up docker in paas server
@@ -87,6 +85,12 @@ fi
 if [ -d /etc/init/ ]; then
     sudo cp canopy_server_comm.conf /etc/init
     sudo cp canopy_server_paas.conf /etc/init
+fi
+
+# copy config file
+if [ 0 -lt $(ls config.* 2>/dev/null | wc -w) ]; then
+    sudo mkdir -p /etc/canopy/
+    sudo cp config.yaml /etc/canopy/
 fi
 
 set +e
