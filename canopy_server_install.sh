@@ -58,8 +58,12 @@ echo "installing go dependencies..."
 go get -u github.com/kardianos/govendor
 cd canopy_server_comm
 govendor sync
+cp $CANOPY_DIR/config.* .
+govendor install
 cd ../canopy_server_paas
 govendor sync
+cp $CANOPY_DIR/config.* .
+govendor install
 
 # set up docker in paas server
 cd docker
