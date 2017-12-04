@@ -15,3 +15,8 @@ To run the dashboard, you must specify the `--dashboard` option when executing t
 . ./canopy_server_install.sh --dashboard=/your/dashboard/path
 ./canopy_server_start.sh --dashboard=/your/dashboard/path
 ```
+### Server Configuration Options
+Configuration options for the Communication and Paas servers can be specified in a `config.*` file in any of the following formats: JSON, TOML, YAML, HCL, or Java properties. The config file should placed in the top level of this directory.
+
+The following keys and values are supported in the config file:
+- `db`: `redis`, `none`
