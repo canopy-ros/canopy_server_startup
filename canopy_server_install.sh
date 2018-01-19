@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 OPTS=$(getopt -n "$0" -o h --long help,dashboard:: -- "$@")
 eval set -- "$OPTS"
@@ -37,13 +37,30 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \
 sudo apt-get install python-pip -y
 
 # set path
-cd $HOME
 #echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
 #echo 'export GOPATH=$HOME/go' >> ~/.bashrc
 #echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
-export GOPATH=$(pwd)/go
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
+
+# set up services with systemd/upstart
+sudo mkdir -p /etc/default/ 
+sudo "PATH=$PATH" sh -c 'echo "PATH=$PATH" > /etc/default/canopy'
+if [ -d /lib/systemd/ ]; then
+    sudo cp canopy_server_comm.service /lib/systemd/system
+    sudo cp canopy_server_paas.service /lib/systemd/system
+fi
+if [ -d /etc/init/ ]; then
+    sudo cp canopy_server_comm.conf /etc/init
+    sudo cp canopy_server_paas.conf /etc/init
+fi
+
+# copy config file
+if [ 0 -lt $(ls config.* 2>/dev/null | wc -w) ]; then
+    sudo mkdir -p /etc/canopy/
+    sudo cp config.yaml /etc/canopy/
+fi
 
 # initialize go directory
 mkdir -p go/src/github.com/canopy-ros
@@ -74,23 +91,4 @@ if [ $DASHBOARD -eq 1 ]; then
     git clone https://github.com/canopy-ros/canopy_server_dashboard
 fi
 
-# set up services with systemd/upstart
-cd $CANOPY_DIR
-sudo mkdir -p /etc/default/ 
-sudo "PATH=$PATH" sh -c 'echo "PATH=$PATH" > /etc/default/canopy'
-if [ -d /lib/systemd/ ]; then
-    sudo cp canopy_server_comm.service /lib/systemd/system
-    sudo cp canopy_server_paas.service /lib/systemd/system
-fi
-if [ -d /etc/init/ ]; then
-    sudo cp canopy_server_comm.conf /etc/init
-    sudo cp canopy_server_paas.conf /etc/init
-fi
-
-# copy config file
-if [ 0 -lt $(ls config.* 2>/dev/null | wc -w) ]; then
-    sudo mkdir -p /etc/canopy/
-    sudo cp config.yaml /etc/canopy/
-fi
-
-set +e
+set +ex
