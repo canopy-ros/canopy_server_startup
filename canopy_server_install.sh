@@ -63,12 +63,17 @@ if [ 0 -lt $(ls config.* 2>/dev/null | wc -w) ]; then
 fi
 
 # initialize go directory
+cd $HOME
 mkdir -p go/src/github.com/canopy-ros
 mkdir -p go/bin
 mkdir -p go/pkg
 cd go/src/github.com/canopy-ros
-git clone https://github.com/canopy-ros/canopy_server_comm
-git clone https://github.com/canopy-ros/canopy_server_paas
+if [ ! -d canopy_server_comm ]; then
+    git clone https://github.com/canopy-ros/canopy_server_comm
+fi
+if [ ! -d canopy_server_paas ]; then
+    git clone https://github.com/canopy-ros/canopy_server_paas
+fi
 
 # install go dependencies with govendor
 echo "installing go dependencies..."
@@ -88,7 +93,9 @@ sudo docker build --tag="canopy" .
 if [ $DASHBOARD -eq 1 ]; then
     mkdir -p $METEOR_PATH/meteor
     cd $METEOR_PATH/meteor
-    git clone https://github.com/canopy-ros/canopy_server_dashboard
+    if [ ! -d canopy_server_dashboard ]; then
+        git clone https://github.com/canopy-ros/canopy_server_dashboard
+    fi
 fi
 
 set +ex
