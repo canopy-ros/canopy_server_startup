@@ -30,7 +30,6 @@ done
 
 export CANOPY_DIR=$(pwd)
 sudo apt-get update
-GIMME_OUTPUT=$(gimme 1.7.3) && eval "$GIMME_OUTPUT"
 wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
 sudo apt-get install curl -y
