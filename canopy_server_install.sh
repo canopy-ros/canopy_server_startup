@@ -1,5 +1,13 @@
 #!/bin/sh
-set -ex
+export CANOPY_DIR=$(pwd)
+
+# trap errors
+function err_fn() {
+    echo 'ERROR - aborting script.'
+    cd $CANOPY_DIR
+    trap - ERR
+}
+trap "err_fn; return" ERR
 
 OPTS=$(getopt -n "$0" -o h --long help,dashboard:: -- "$@")
 eval set -- "$OPTS"
@@ -98,4 +106,6 @@ if [ $DASHBOARD -eq 1 ]; then
     fi
 fi
 
-set +ex
+cd $CANOPY_DIR
+trap - ERR
+echo "SUCCESS - script successfully installed."
