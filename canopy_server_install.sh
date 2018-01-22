@@ -48,8 +48,8 @@ sudo apt-get install python-pip -y
 #echo 'export GOPATH=$HOME/go' >> ~/.bashrc
 #echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
+echo $PATH | grep -q "$GOPATH/bin" || export PATH=$PATH:$GOPATH/bin
+echo $PATH | grep -q "/usr/local/go/bin" || export PATH=$PATH:/usr/local/go/bin
 
 # set up services with systemd/upstart
 sudo mkdir -p /etc/default/ 
