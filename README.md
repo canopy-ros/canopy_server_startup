@@ -24,9 +24,9 @@ The following keys and values are supported in the config file:
 ### Clock Synchronization
 This section includes the _server-side_ instructions for synchronizing the clocks of the Canopy server and the Canopy clients using `chrony`. 
 
-Edit the chrony configuration file `chrony_canopy_server.conf` by uncommenting the `allow` line and replacing the placeholder IP with your Canopy clients' IP addresses:
+Edit the chrony configuration file in `/etc/chrony/chrony_canopy_server.conf` by uncommenting the `allow` line and replacing the placeholder IP with your Canopy clients' IP addresses:
 ```
-# chrony_canopy_server.conf
+# /etc/chrony/chrony_canopy_server.conf
 server 0.pool.ntp.org
 server 1.pool.ntp.org
 server 2.pool.ntp.org
@@ -44,5 +44,5 @@ sudo systemctl stop chronyd
 
 Restart `chrony` with your configuration file:
 ```
-sudo chronyd -f <absolute_path_to_config_file>/chrony_canopy_server.conf -r -s
+sudo chronyd -f /etc/chrony/chrony_canopy_server.conf -r -s
 ```

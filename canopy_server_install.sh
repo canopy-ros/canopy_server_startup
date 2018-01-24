@@ -42,7 +42,10 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \
     Dpkg::Options::="--force-confdef" \
     -o Dpkg::Options::="--force-confnew" install docker-ce
 sudo apt-get install python-pip -y
+
+# chrony
 sudo apt-get install chrony
+sudo cp chrony_canopy_server.conf /etc/chrony/
 
 # set path
 grep -q 'export GOPATH=$HOME/go' $HOME/.bashrc || echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
