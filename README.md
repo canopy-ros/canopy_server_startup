@@ -24,6 +24,7 @@ The following keys and values are supported in the config file:
 ### Clock Synchronization
 This section includes the _server-side_ instructions for synchronizing the clocks of the Canopy server and the Canopy clients using `chrony`. 
 
+#### Setting up chrony
 Edit the chrony configuration file in `/etc/chrony/chrony_canopy_server.conf` by uncommenting the `allow` line and replacing the placeholder IP with your Canopy clients' IP addresses:
 ```
 # /etc/chrony/chrony_canopy_server.conf
@@ -37,12 +38,34 @@ allow 128.31.37.167
 ...
 ```
 
-Disable `chrony`:
+Disable and stop the default chrony service:
 ```
-sudo systemctl stop chronyd
+sudo systemctl stop chrony
+sudo systemctl disable chrony
 ```
 
-Restart `chrony` with your configuration file:
+Enable and start the Canopy chrony service:
 ```
-sudo chronyd -f /etc/chrony/chrony_canopy_server.conf -r -s
+sudo systemctl enable chrony_canopy_server
+sudo systemctl start chrony_canopy_server
 ```
+
+#### Checking chrony setup
+To check whether the service is running correctly, run `systemctl status chrony_canopy_server` which should show an active running status:
+```
+chrony_canopy_server.service - chrony service for canopy server
+Loaded: loaded (/lib/systemd/system/chrony_canopy_server.service; static; vendor preset: enabled)
+Active: active (running)
+...
+```
+
+To check whether the chrony daemon `chronyd` is working correctly, run `chronyc activity` which should return the following:
+```
+200 OK
+3 sources online
+0 sources offline
+0 sources doing burst (return to online)
+0 sources doing burst (return to offline)
+0 sources with unknown address
+```
+If you see the message `506 Cannot talk to daemon`, then `chronyd` is not running properly.
