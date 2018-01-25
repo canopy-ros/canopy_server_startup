@@ -42,10 +42,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \
     Dpkg::Options::="--force-confdef" \
     -o Dpkg::Options::="--force-confnew" install docker-ce
 sudo apt-get install python-pip -y
-
-# chrony
 sudo apt-get install chrony
-sudo cp chrony_canopy_server.conf /etc/chrony/
 
 # set path
 grep -q 'export GOPATH=$HOME/go' $HOME/.bashrc || echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
@@ -59,13 +56,17 @@ sudo "PATH=$PATH" sh -c 'echo "PATH=$PATH" > /etc/default/canopy'
 if [ -d /lib/systemd/ ]; then
     sudo cp canopy_server_comm.service /lib/systemd/system
     sudo cp canopy_server_paas.service /lib/systemd/system
+    sudo cp chrony_canopy_server.service /lib/systemd/system
 fi
 if [ -d /etc/init/ ]; then
     sudo cp canopy_server_comm.conf /etc/init
     sudo cp canopy_server_paas.conf /etc/init
 fi
 
-# copy config file
+# copy chrony config file
+sudo cp chrony_canopy_server.conf /etc/chrony/
+
+# copy canopy config file
 if [ 0 -lt $(ls config.* 2>/dev/null | wc -w) ]; then
     sudo mkdir -p /etc/canopy/
     sudo cp config.yaml /etc/canopy/
