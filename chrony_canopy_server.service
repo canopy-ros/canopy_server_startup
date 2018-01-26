@@ -1,6 +1,5 @@
 [Unit]
 Description = chrony service for canopy server
-Conflicts = ntpd.service
 
 [Service]
 Type = forking
