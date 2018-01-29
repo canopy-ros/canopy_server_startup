@@ -28,10 +28,10 @@ This section includes the _server-side_ instructions for synchronizing the clock
 Edit the chrony configuration file in `/etc/chrony/chrony_canopy_server.conf` by uncommenting the `allow` line and replacing the placeholder IP with your Canopy clients' IP addresses:
 ```
 # /etc/chrony/chrony_canopy_server.conf
-server 0.pool.ntp.org
-server 1.pool.ntp.org
-server 2.pool.ntp.org
-server 3.pool.ntp.org
+server 0.pool.ntp.org iburst
+server 1.pool.ntp.org iburst
+server 2.pool.ntp.org iburst
+server 3.pool.ntp.org iburst
 
 allow 128.31.37.168
 allow 128.31.37.167
