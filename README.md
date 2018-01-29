@@ -38,7 +38,7 @@ allow 128.31.37.167
 ...
 ```
 
-Disable and stop the default chrony service:
+Disable and stop the default chrony service (it's fine if it gives a warning after the disable step):
 ```
 sudo systemctl stop chrony
 sudo systemctl disable chrony
