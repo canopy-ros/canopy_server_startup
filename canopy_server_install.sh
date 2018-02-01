@@ -1,13 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 export CANOPY_DIR=$(pwd)
 
 # trap errors
 function err_fn() {
     echo 'ERROR - aborting script.'
     cd $CANOPY_DIR
-    trap - ERR
 }
-trap "err_fn; return" ERR
+trap "err_fn; trap - ERR; return" ERR
 
 OPTS=$(getopt -n "$0" -o h --long help,dashboard:: -- "$@")
 eval set -- "$OPTS"
@@ -47,7 +46,10 @@ sudo apt-get install chrony -y
 grep -q 'export GOPATH=$HOME/go' $HOME/.bashrc || echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
 grep -q 'export PATH=$PATH:/usr/local/go/bin' $HOME/.bashrc || echo 'export PATH=$PATH:/usr/local/go/bin' >> $HOME/.bashrc
 grep -q 'export PATH=$PATH:$GOPATH/bin' $HOME/.bashrc || echo 'export PATH=$PATH:$GOPATH/bin' >> $HOME/.bashrc
+# disable traps for sourcing .bashrc
+trap - ERR
 . $HOME/.bashrc
+trap "err_fn; trap - ERR; return" ERR
 
 # set up services with systemd/upstart
 sudo mkdir -p /etc/default/
