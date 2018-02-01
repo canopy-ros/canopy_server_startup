@@ -50,8 +50,9 @@ grep -q 'export PATH=$PATH:$GOPATH/bin' $HOME/.bashrc || echo 'export PATH=$PATH
 . $HOME/.bashrc
 
 # set up services with systemd/upstart
-sudo mkdir -p /etc/default/ 
+sudo mkdir -p /etc/default/
 sudo "PATH=$PATH" sh -c 'echo "PATH=$PATH" > /etc/default/canopy'
+sudo "GOPATH=$GOPATH" sh -c 'echo "GOPATH=$GOPATH" >> /etc/default/canopy'
 if [ -d /lib/systemd/ ]; then
     sudo cp canopy_server_comm.service /lib/systemd/system
     sudo cp canopy_server_paas.service /lib/systemd/system
