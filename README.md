@@ -6,13 +6,33 @@ Development repo containing start-up scripts for the Canopy server stack.
 ## Installation and Execution
 To install the Canopy server stack, run the following:
 ```
-. ./canopy_server_install.sh
+source ./canopy_server_install.sh
 ```
 
 To execute the Canopy servers, run the following:
 ```
 ./canopy_server_start.sh
 ```
+
+To view log outputs from the servers:
+- If your system uses **systemd** (Ubuntu 15.04+):
+```
+# live communication server logs
+journalctl -f -u canopy_server_comm
+
+# open new terminal for live paas server logs
+journalctl -f -u canopy_server_paas
+```
+
+- If your system uses **Upstart** (prior to Ubuntu 15.04):
+```
+# live communication server logs
+tail -f /var/log/upstart/canopy_server_comm.log
+
+# open new terminal for live paas server logs
+tail -f /var/log/upstart/canopy_server_paas.log
+```
+
 Additional options for Canopy server installation and execution can be found in the next sections.
 
 ## Dashboard
