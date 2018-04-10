@@ -1,11 +1,12 @@
-# TODO FROM
+# TODO check this
+FROM ros:indigo-ros-base
 
 # TODO ENV
 
+# Install dependencies
 RUN apt-get update
-
 RUN apt-get install -y \
-    curl \
+    wget \
     redis-server \
     apt-transport-https \
     ca-certificates \
@@ -13,19 +14,12 @@ RUN apt-get install -y \
     python-pip \
     chrony
 
-# Install docker-ce
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y -o \
-    Dpkg::Options::="--force-confdef" \
-    -o Dpkg::Options::="--force-confnew" install docker-ce
-
 # Install go 1.9 and set PATH
 RUN wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
 RUN echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc \
     && echo 'export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin' >> $HOME/.bashrc
-RUN source ~/.bashrc
+RUN . ~/.bashrc
 
 # Initialize go and Canopy directories
 WORKDIR ~
