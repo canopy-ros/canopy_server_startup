@@ -1,7 +1,5 @@
 FROM golang:1.9
 
-SHELL ["bash", "-c"]
-
 # Install dependencies
 RUN apt-get update
 RUN apt-get install -y \
@@ -23,3 +21,5 @@ WORKDIR /go/src/github.com/canopy-ros/canopy_server_paas
 RUN govendor sync
 RUN govendor install
 WORKDIR /go/src/github.com/canopy-ros/
+
+CMD ["/bin/sh", "-c", "canopy_server_comm", "--addr=$(hostname -I | cut -d' ' -f1):8080"]
