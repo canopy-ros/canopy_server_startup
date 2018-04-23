@@ -9,7 +9,7 @@ RUN apt-get install -y \
 # Initialize Canopy directories
 RUN mkdir -p /go/src/github.com/canopy-ros
 WORKDIR /go/src/github.com/canopy-ros
-RUN git clone https://github.com/canopy-ros/canopy_server_comm
+RUN git clone -b dockerize https://github.com/canopy-ros/canopy_server_comm
 RUN git clone https://github.com/canopy-ros/canopy_server_paas
 
 # Install Canopy go dependencies with govendor
@@ -22,4 +22,8 @@ RUN govendor sync
 RUN govendor install
 WORKDIR /go/src/github.com/canopy-ros/
 
-CMD ["/bin/sh", "-c", "canopy_server_comm", "--addr=$(hostname -I | cut -d' ' -f1):8080"]
+# Copy config files
+RUN mkdir -p /etc/canopy
+COPY . /etc/canopy/
+
+ENTRYPOINT ["/bin/sh", "-c", "canopy_server_comm", "--addr=$(hostname -I | cut -d' ' -f1):8080"]
