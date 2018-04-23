@@ -3,10 +3,11 @@ language: bash
 dist: trusty
 go:
     - 1.9.2
-before_install:
-    - source .travis/install_dependencies.sh
+services:
+    - docker
 install:
-    - source canopy_server_install.sh --dashboard
+    - cd docker
+    - docker-compose build
 deploy:
     provider: gcs
     access_key_id: GOOGNPTKC434KREWJ2PU
