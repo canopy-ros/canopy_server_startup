@@ -8,15 +8,11 @@ RUN apt-get install -y \
 # Initialize Canopy directories
 RUN mkdir -p /go/src/github.com/canopy-ros
 WORKDIR /go/src/github.com/canopy-ros
-RUN git clone -b dockerize https://github.com/canopy-ros/canopy_server_comm # TODO change to master branch
-RUN git clone https://github.com/canopy-ros/canopy_server_paas # TODO remove paas for first release
+RUN git clone https://github.com/canopy-ros/canopy_server_comm
 
 # Install Canopy go dependencies with govendor
 RUN go get -u github.com/kardianos/govendor
 WORKDIR /go/src/github.com/canopy-ros/canopy_server_comm
-RUN govendor sync
-RUN govendor install
-WORKDIR /go/src/github.com/canopy-ros/canopy_server_paas
 RUN govendor sync
 RUN govendor install
 WORKDIR /go/src/github.com/canopy-ros/
