@@ -16,3 +16,4 @@ services:
     cap_add:
       - SYS_TIME
     command: ["/usr/sbin/chronyd", "-d", "-f", "/etc/chrony/chrony.conf"]
+    pid: host
