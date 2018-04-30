@@ -6,3 +6,13 @@ services:
     build: .
     ports:
       - "8080:8080"
+    volumes:
+      - /etc/canopy:/etc/canopy
+  chrony:
+    # image: "modularitycontainers/chronyd"
+    build: https://github.com/container-images/chrony-server.git
+    volumes:
+      - /etc/chrony/chrony.conf:/etc/chrony/chrony.conf:ro
+    cap_add:
+      - SYS_TIME
+    command: ["/usr/sbin/chronyd", "-d", "-f", "/etc/chrony/chrony.conf"]
