@@ -3,7 +3,7 @@ services:
   redis:
     image: "redis:alpine"
   canopy_server:
-    image: canopyros/canopy_server_startup:latest
+    image: canopyros/canopy_server:latest
     ports:
       - "8080:8080"
     volumes:

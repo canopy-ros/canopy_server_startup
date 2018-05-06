@@ -7,7 +7,7 @@ services:
     - docker
 env:
     global:
-        - IMAGE_NAME=canopyros/canopy_server_startup
+        - IMAGE_NAME=canopyros/canopy_server
 
 install:
     - cd docker
