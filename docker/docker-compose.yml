@@ -3,7 +3,7 @@ services:
   redis:
     image: "redis:alpine"
   canopy_server:
-    build: . # TODO pull image from registry
+    image: canopyros/canopy_server_startup:latest
     ports:
       - "8080:8080"
     volumes:
