@@ -3,15 +3,17 @@ language: bash
 dist: trusty
 go:
     - 1.9.2
-before_install:
-    - source .travis/install_dependencies.sh
+services:
+    - docker
+
 install:
-    - source canopy_server_install.sh --dashboard
+    - docker-compose build
+
 deploy:
-    provider: gcs
-    access_key_id: GOOGNPTKC434KREWJ2PU
-    secret_access_key:
+    - provider: gcs
+      access_key_id: GOOGNPTKC434KREWJ2PU
+      secret_access_key:
         secure: SFJe85yEuilCFCeGTDtzsdRLPDeRnw2xyrgNwgVUgg6XlamUPs8AhVX1J9WDFfaRShLIheML5QmBXHamEAW3Z5tc7VzKCpijTQyMPRltBjMMKN4Uz4ZIwQqgbcoYILiSJGFKSndWzt5H1nDX6g5XiRbQEq1ltt5fg4jnEgKp2jguiuGDuGPvgJFZXAx/i0CD+49s6bLetFMDyiyz9Va49emwId/skv1ylFf5B8CjfvxRVrTUnXoWWX+tSSPgHGTH5sLQTYFnpvGtXWWYSuIs8ZD0tLLJpkclQV05Q6w2NKJP6LuvUx/wcFT6leFV2kn+x/nK4Rr0lH0JZ71hQCcRqnjgBHz8PUCjCYyvbR36M5aLGCiVoMBleSUYmT/DCYGEztVPKx4/Av6UO4FQNTeWdv8rH5zl4j+/cGaNbTVbJcMDsiMsZxZjJ0XLnDnZhD22al0vZnUnHjeYEas+feNT8rW9wJz4u3bD5vcFDXX2Fus6BZl3XQfJUX8QCGSRwW68pEb8n+LxFGS9gyaJX+2ZH/YHXbZXDuigo9HkjT1DJ6jNuLja0y69Ruu5u6arp0TI5xL1cBaJM9OnUDYiRen/oQk2I0N5Xe5A6V6SPixVJSGJrSkU3bzfrpqfB1Rup2ZBzSwkfcbFHLSpScH6HZx307cR7pFHO4VvBNm7p1d3itU=
-    bucket: canopy-ros-bucket
-    on:
+      bucket: canopy-ros-bucket
+      on:
         repo: canopy-ros/canopy_server_startup

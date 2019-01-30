@@ -1,7 +1,0 @@
-[Unit]
-Description = chrony service for canopy server
-
-[Service]
-Type = forking
-PIDFile = /var/run/chronyd.pid
-ExecStart = /usr/sbin/chronyd -f /etc/chrony/chrony_canopy_server.conf -r -s
